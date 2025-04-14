@@ -3,7 +3,7 @@
 module fsm_tb();
 	parameter parallel = 784;
 	parameter bias= 30;
-	reg[7:0] din_a_base[0:parallel*10-1];
+	reg[7:0] din_a_base[0:parallel*10000-1];
 	reg[7:0] din_w1_base[0:parallel*bias-1];
 	reg[7:0] din_b1_base [0:bias-1];
 	reg[7:0] din_w2_base [0:bias*10-1];
@@ -173,9 +173,8 @@ generate
 endgenerate
 
 always @ (posedge done)begin		
-		$display("Final");
 		img_cnt = img_cnt + 1;
-		if(img_cnt == 10)begin
+		if(img_cnt == 1)begin
 			$display("Accuracy %d/10000", correct_cnt);
 			$stop();
 		end
