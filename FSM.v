@@ -320,7 +320,7 @@ localparam
 				LAYER1:begin
 					
 					if(counter_reg < 16 )begin
-						counter_reg <= counter_reg + 1'b1;
+						counter_reg <= counter_reg + 8;
 						
 					end
 					if(counter_reg == 16 && counter1_reg < 784)begin
@@ -357,7 +357,6 @@ localparam
 					end
 				end
 				WGH_READ:begin
-					//$display(" addr2 %d",current_addr2);
 					load_wgh_done_reg <= 0;
 				end
 				WGH_WAIT:begin
