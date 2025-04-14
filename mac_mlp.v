@@ -36,10 +36,12 @@ module mac#(parameter parallel=16, bias = 30, depth=2048, width=32,num = 4)(
 	reg signed[15:0] partial_sum [0:3];
 	reg [7:0] partial_sum1 [0:3];
 	reg signed[15:0] temp_sig_in_reg;
-	reg signed[15:0] temp2,sum,sum1,sum2;
+	reg signed[15:0] temp2,sum,sum2;
+	reg signed[15:0] sum1[0:7];
 	reg signed[15:0] temp1 [0:29];
 	reg signed[15:0] temp [0:29];
-	reg signed[7:0] B1mux,B2mux,weight,sum4,sum1_truncate,sum2_truncate;
+	reg signed[7:0] B1mux,B2mux,weight,sum4,sum2_truncate;
+	reg signed[7:0] sum1_truncate[0:7];
 	genvar i;
 	reg [1:0] k,l,m,sel2,sel1;
 	reg [2:0]j;
@@ -99,10 +101,25 @@ module mac#(parameter parallel=16, bias = 30, depth=2048, width=32,num = 4)(
 	end
 	always@(*)begin
 		if(layer1_start && counter <16)begin
-			sum1 <= img[counter] * W1[counter];
+			sum1[0] <= img[counter] * W1[counter];
+			sum1[1] <= img[counter+1] * W1[counter+1];
+			sum1[2] <= img[counter+2] * W1[counter+2];
+			sum1[3] <= img[counter+3] * W1[counter+3];
+			sum1[4] <= img[counter+4] * W1[counter+4];
+			sum1[5] <= img[counter+5] * W1[counter+5];
+			sum1[6] <= img[counter+6] * W1[counter+6];
+			sum1[7] <= img[counter+7] * W1[counter+7];
+
 		end
 		else begin
-			sum1 <= 15'b0;
+			sum1[0] <= 15'b0;
+			sum1[1] <= 15'b0;
+			sum1[2] <= 15'b0;
+			sum1[3] <= 15'b0;
+			sum1[4] <= 15'b0;
+			sum1[5] <= 15'b0;
+			sum1[6] <= 15'b0;
+			sum1[7] <= 15'b0;
 		end
 	end
 	/*generate
@@ -144,7 +161,7 @@ module mac#(parameter parallel=16, bias = 30, depth=2048, width=32,num = 4)(
 				else begin
 					//temp <=  {partial_sum[3][15],partial_sum[3][11:5]};
 					//sum1_truncate <= {sum1[15],sum1[11:5]};
-					sum <= sum +sum1_truncate;
+					sum <= sum +sum1_truncate[0]+sum1_truncate[1]+sum1_truncate[2]+sum1_truncate[3]+sum1_truncate[4]+sum1_truncate[5]+sum1_truncate[6]+sum1_truncate[7];
 				end
 			end
 			else begin
@@ -153,8 +170,16 @@ module mac#(parameter parallel=16, bias = 30, depth=2048, width=32,num = 4)(
 		end
 	end
 	always@(*) begin
-			sum1_truncate <= {sum1[15],sum1[11:5]};
+			sum1_truncate[0] <= {sum1[0][15],sum1[0][11:5]};
+			sum1_truncate[1] <= {sum1[1][15],sum1[1][11:5]};
+			sum1_truncate[2] <= {sum1[2][15],sum1[2][11:5]};
+			sum1_truncate[3] <= {sum1[3][15],sum1[3][11:5]};
+			sum1_truncate[4] <= {sum1[4][15],sum1[4][11:5]};
+			sum1_truncate[5] <= {sum1[5][15],sum1[5][11:5]};
+			sum1_truncate[6] <= {sum1[6][15],sum1[6][11:5]};
+			sum1_truncate[7] <= {sum1[7][15],sum1[7][11:5]};
 	end
+
 	always@(posedge clk)begin
 		if(sigmoid_start)begin
 			temp_sig_in_reg <= temp1[counter2];			
@@ -171,7 +196,6 @@ module mac#(parameter parallel=16, bias = 30, depth=2048, width=32,num = 4)(
 		else begin
 			if(layer2_start) begin
 				if(counter2_1 == 30)begin
-					$display("Hi");
 					C[counter3] <= temp2 + B2[counter3];
 					temp2 <= 15'h0;
 				end
