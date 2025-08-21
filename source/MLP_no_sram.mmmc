@@ -1,0 +1,40 @@
+###################################################################
+# Version:1.0 Multi-Mode/Multi-Corner (MMMC) View Definition File
+# Configure 1-corner signle-model MMMC
+# Modified from documentation from Prof. Victor P. Nelson
+# eng.auburn.edu/~nelson/courses/elec5250_6250
+####################################################################
+### Timing constraints file from synthesis
+create_constraint_mode -name CONSTRAINTS -sdc_files ${sdc_file}
+
+### Create operating condition (P-V-T) for the timing library 
+create_op_cond -name OPcondition -library_file ${lib_file} -P {1} -V {1.1} -T {27}
+
+### Use typical timing library file for this design
+create_library_set -name TYPlib -timing ${lib_file}
+
+### Create RC corner from capacitance table(s)
+#create_rc_corner -name RCcorner -cap_table ${capTable_file} -T {27}
+#--> FreePDK45 does not provide cap table
+
+### Delay corner = timing library plus rc corner
+### Worst-case corner = max delay --> affects setup times
+### Best-case corner = min delay --> affects hold times
+### For 1-corner, use typical vlaues for both
+create_delay_corner -name DELAYcorner -library_set TYPlib 
+#create_delay_corner -name DELAYcorner -library_set TYPlib -rc_corner RCcorner
+#--> We do not have rc corner
+
+### Anlysis view = delay corner matched to constraints
+create_analysis_view -name TYPview -delay_corner {DELAYcorner} -constraint_mode {CONSTRAINTS}
+
+### Set analysis view to above for both setup and hold
+set_analysis_view -setup {TYPview} -hold {TYPview}
+
+### Analysis View (create_analysis_view)
+####### Delaycalculation Corner (create_delay_corner)
+########### Power Domain Definition (update_delay_corner)
+########### RC Corner (create_rc_corner)
+########### Operating Condition (create_op_cond)
+########### Library Set (create_library_set)
+####### Constraint Mode (create_constraint_mode)

@@ -1,0 +1,77 @@
+[12/09 22:59:27      0s] 
+[12/09 22:59:27      0s] Cadence Innovus(TM) Implementation System.
+[12/09 22:59:27      0s] Copyright 2019 Cadence Design Systems, Inc. All rights reserved worldwide.
+[12/09 22:59:27      0s] 
+[12/09 22:59:27      0s] Version:	v19.12-s087_1, built Mon Nov 11 17:32:01 PST 2019
+[12/09 22:59:27      0s] Options:	-init ../source/project1.tcl -log project1.log 
+[12/09 22:59:27      0s] Date:		Mon Dec  9 22:59:27 2024
+[12/09 22:59:27      0s] Host:		viz-n1.crc.pitt.edu (x86_64 w/Linux 3.10.0-1160.99.1.el7.x86_64) (12cores*24cpus*Intel(R) Xeon(R) Gold 6226 CPU @ 2.70GHz 19712KB)
+[12/09 22:59:27      0s] OS:		Red Hat Enterprise Linux Server release 7.9 (Maipo)
+[12/09 22:59:27      0s] 
+[12/09 22:59:27      0s] License:
+[12/09 22:59:27      0s] 		invs	Innovus Implementation System	19.1	checkout succeeded
+[12/09 22:59:27      0s] 		8 CPU jobs allowed with the current license(s). Use setMultiCpuUsage to set your required CPU count.
+[12/09 22:59:29      0s] **ERROR: (IMPOAX-124):	OpenAccess (OA) shared library installation is older than the one that was used to build this Innovus version. For using the OA installation built and tested with this Innovus version, unset the shell variable OA_HOME. For using 'p024' or higher version of OA, reset OA_HOME to point to that installation.
+Type 'man IMPOAX-124' for more detail.
+[12/09 22:59:29      0s] **ERROR: (IMPOAX-332):	Failed to initialize OA database. OA related commands cannot be run in this session. Confirm that the OA shared library is installed and OA_HOME is set correctly. Typically the OA_HOME environment variable should not be set.
+Type 'man IMPOAX-332' for more detail.
+[12/09 22:59:29      0s] INFO: OA features are disabled in this session.
+[12/09 22:59:42      9s] @(#)CDS: Innovus v19.12-s087_1 (64bit) 11/11/2019 17:32 (Linux 2.6.32-431.11.2.el6.x86_64)
+[12/09 22:59:42      9s] @(#)CDS: NanoRoute 19.12-s087_1 NR191024-1807/19_12-UB (database version 18.20, 485.7.1) {superthreading v1.51}
+[12/09 22:59:42      9s] @(#)CDS: AAE 19.12-s033 (64bit) 11/11/2019 (Linux 2.6.32-431.11.2.el6.x86_64)
+[12/09 22:59:42      9s] @(#)CDS: CTE 19.12-s033_1 () Oct 24 2019 14:09:28 ( )
+[12/09 22:59:42      9s] @(#)CDS: SYNTECH 19.12-s008_1 () Oct  6 2019 23:25:36 ( )
+[12/09 22:59:42      9s] @(#)CDS: CPE v19.12-s079
+[12/09 22:59:42      9s] @(#)CDS: IQuantus/TQuantus 19.1.3-s095 (64bit) Fri Aug 30 18:16:09 PDT 2019 (Linux 2.6.32-431.11.2.el6.x86_64)
+[12/09 22:59:42      9s] @(#)CDS: OA 22.60-p024 Thu Sep  5 03:05:12 2019
+[12/09 22:59:42      9s] @(#)CDS: SGN 18.10-d003 (18-Jul-2018) (64 bit executable, Qt5.9.1)
+[12/09 22:59:42      9s] @(#)CDS: RCDB 11.14.18
+[12/09 22:59:42      9s] @(#)CDS: STYLUS 19.10-s011_1 (09/04/2019 02:55 PDT)
+[12/09 22:59:42      9s] Create and set the environment variable TMPDIR to /tmp/innovus_temp_7965_viz-n1.crc.pitt.edu_swm58_FUzjz4.
+
+[12/09 22:59:42      9s] Change the soft stacksize limit to 0.2%RAM (384 mbytes). Set global soft_stack_size_limit to change the value.
+[12/09 22:59:43     10s] 
+[12/09 22:59:43     10s] **INFO:  MMMC transition support version v31-84 
+[12/09 22:59:43     10s] 
+[12/09 22:59:43     10s] <CMD> set_global _enable_mmmc_by_default_flow      $CTE::mmmc_default
+[12/09 22:59:43     10s] <CMD> suppressMessage ENCEXT-2799
+[12/09 22:59:43     10s] Sourcing file "../source/project1.tcl" ...
+[12/09 22:59:43     10s] <CMD> setDesignMode -process 45
+[12/09 22:59:43     10s] ##  Process: 45            (User Set)               
+[12/09 22:59:43     10s] ##     Node: (not set)                           
+[12/09 22:59:43     10s] 
+##  Check design process and node:  
+##  Design tech node is not set.
+
+[12/09 22:59:43     10s] Applying the recommended capacitance filtering threshold values for 45nm process node: total_c_th=0, relative_c_th=1 and coupling_c_th=0.1.
+[12/09 22:59:43     10s] 	These values will be used by all post-route extraction engines, including TQuantus, IQuantus and Quantus QRC extraction.
+[12/09 22:59:43     10s] 	Capacitance filtering mode(-capFilterMode option of the setExtractRCMode) is 'relAndCoup' for all engines.
+[12/09 22:59:43     10s] 	The accuracy mode for postRoute effortLevel low extraction will be set to 'high'.
+[12/09 22:59:43     10s] 	Default value for EffortLevel(-effortLevel option of the setExtractRCMode) in postRoute extraction mode will be 'medium' if Quantus QRC technology file is specified else 'low'.
+[12/09 22:59:43     10s] <CMD> set init_verilog /bgfs/ece2193-2024s/swm58/Project/source/MLP_no_sram_syn.v
+[12/09 22:59:43     10s] <CMD> set init_top_cell MLP_no_sram
+[12/09 22:59:43     10s] <CMD> set init_lef_file /bgfs/ece2193-2024s/kit/standardcell/lib/files/gscl45nm.lef
+[12/09 22:59:43     10s] <CMD> set init_pwr_net VDD
+[12/09 22:59:43     10s] <CMD> set init_gnd_net VSS
+[12/09 22:59:43     10s] **ERROR: (IMPSYT-6692):	Invalid return code while executing '../source/project1.tcl' was returned and script processing was stopped. Review the following error in '../source/project1.tcl' then restart.
+[12/09 22:59:43     10s] **ERROR: (IMPSYT-6693):	Error message: ../source/project1.tcl: can't read "mmmc_file": no such variable.
+[12/09 22:59:43     10s] <CMD> win
+[12/09 23:02:04     15s] 
+--------------------------------------------------------------------------------
+Exiting Innovus on Mon Dec  9 23:02:04 2024
+  Total CPU time:     0:00:15
+  Total real time:    0:02:38
+  Peak memory (main): 458.90MB
+
+[12/09 23:02:04     15s] 
+[12/09 23:02:04     15s] *** Memory Usage v#1 (Current mem = 607.906M, initial mem = 273.812M) ***
+[12/09 23:02:04     15s] 
+[12/09 23:02:04     15s] *** Summary of all messages that are not suppressed in this session:
+[12/09 23:02:04     15s] Severity  ID               Count  Summary                                  
+[12/09 23:02:04     15s] ERROR     IMPSYT-6692          1  Invalid return code while executing '%s'...
+[12/09 23:02:04     15s] ERROR     IMPSYT-6693          1  Error message: %s: %s.                   
+[12/09 23:02:04     15s] ERROR     IMPOAX-124           1  OpenAccess (OA) shared library installat...
+[12/09 23:02:04     15s] ERROR     IMPOAX-332           1  Failed to initialize OA database. OA rel...
+[12/09 23:02:04     15s] *** Message Summary: 0 warning(s), 4 error(s)
+[12/09 23:02:04     15s] 
+[12/09 23:02:04     15s] --- Ending "Innovus" (totcpu=0:00:15.4, real=0:02:37, mem=607.9M) ---

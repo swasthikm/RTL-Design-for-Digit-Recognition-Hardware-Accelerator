@@ -1,0 +1,58 @@
+# PPCMD 1 
+# sroute -connect {blockPin padPin padRing corePin floatingStripe} -allowJogging true -allowLayerChange true -blockPin useLef -targetViaLayerRange {metal1 metal5}
+# 3 
+# 16 
+# 0 
+# 0 
+# 0 
+# 0 
+# BOX_LIST 
+# END_BOX_LIST 
+# NET_INFO_LIST 
+# END_NET_INFO_LIST 
+# END_PPCMD 1 
+
+# PPCMD 2 
+# addRing -nets {VDD VSS} -type core_rings -around user_defined -center 0 -spacing 1 -width 1 -offset 1 -threshold auto -layer {top metal1 bottom metal1 left metal2 right metal2}
+# 2 
+# 32 
+# 1 
+# 0 
+# 0 
+# 0 
+# BOX_LIST 
+# END_BOX_LIST 
+# NET_INFO_LIST 
+# VSS 2000 1 1 0 0 0 0 0 
+# RING_PT_INFO_LIST 
+# 368980 3260 368980 871880 
+# END_RING_PT_INFO_LIST 
+# VSS 2000 2 1 0 0 0 0 0 
+# RING_PT_INFO_LIST 
+# 3260 437570 734700 437570 
+# END_RING_PT_INFO_LIST 
+# VDD 2000 1 1 0 0 0 0 0 
+# RING_PT_INFO_LIST 
+# 368980 7260 368980 867880 
+# END_RING_PT_INFO_LIST 
+# VDD 2000 2 1 0 0 0 0 0 
+# RING_PT_INFO_LIST 
+# 7260 437570 730700 437570 
+# END_RING_PT_INFO_LIST 
+# END_NET_INFO_LIST 
+# END_PPCMD 2 
+
+# PPCMD 3 
+# setAddRingMode -stacked_via_top_layer metal3 -stacked_via_bottom_layer metal1
+# 1 
+# 0 
+# 0 
+# 0 
+# 0 
+# 0 
+# BOX_LIST 
+# END_BOX_LIST 
+# NET_INFO_LIST 
+# END_NET_INFO_LIST 
+# END_PPCMD 3 
+

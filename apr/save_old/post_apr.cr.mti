@@ -1,0 +1,15 @@
+/bgfs/ece2193-2024s/swm58/Project/apr/save/MLP_no_sram.apr.v {1 {vlog -work work -vopt -stats=none /bgfs/ece2193-2024s/swm58/Project/apr/save/MLP_no_sram.apr.v
+Model Technology ModelSim SE vlog 2019.1 Compiler 2019.01 Jan  1 2019
+-- Compiling module MLP_no_sram
+
+Top level modules:
+	MLP_no_sram
+
+} {} {}} /bgfs/ece2193-2024s/swm58/Project/apr/save/mlp_tb.v {1 {vlog -work work -vopt -stats=none /bgfs/ece2193-2024s/swm58/Project/apr/save/mlp_tb.v
+Model Technology ModelSim SE vlog 2019.1 Compiler 2019.01 Jan  1 2019
+-- Compiling module mlp_tb
+
+Top level modules:
+	mlp_tb
+
+} {} {}}

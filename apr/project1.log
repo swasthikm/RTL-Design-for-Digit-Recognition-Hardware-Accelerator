@@ -1,0 +1,57 @@
+
+Cadence Innovus(TM) Implementation System.
+Copyright 2019 Cadence Design Systems, Inc. All rights reserved worldwide.
+
+Version:	v19.12-s087_1, built Mon Nov 11 17:32:01 PST 2019
+Options:	-init ../source/project1.tcl -log project1.log 
+Date:		Mon Dec  9 22:59:27 2024
+Host:		viz-n1.crc.pitt.edu (x86_64 w/Linux 3.10.0-1160.99.1.el7.x86_64) (12cores*24cpus*Intel(R) Xeon(R) Gold 6226 CPU @ 2.70GHz 19712KB)
+OS:		Red Hat Enterprise Linux Server release 7.9 (Maipo)
+
+License:
+		invs	Innovus Implementation System	19.1	checkout succeeded
+		8 CPU jobs allowed with the current license(s). Use setMultiCpuUsage to set your required CPU count.
+**ERROR: (IMPOAX-124):	OpenAccess (OA) shared library installation is older than the one that was used to build this Innovus version. For using the OA installation built and tested with this Innovus version, unset the shell variable OA_HOME. For using 'p024' or higher version of OA, reset OA_HOME to point to that installation.
+Type 'man IMPOAX-124' for more detail.
+**ERROR: (IMPOAX-332):	Failed to initialize OA database. OA related commands cannot be run in this session. Confirm that the OA shared library is installed and OA_HOME is set correctly. Typically the OA_HOME environment variable should not be set.
+Type 'man IMPOAX-332' for more detail.
+INFO: OA features are disabled in this session.
+Change the soft stacksize limit to 0.2%RAM (384 mbytes). Set global soft_stack_size_limit to change the value.
+
+**INFO:  MMMC transition support version v31-84 
+
+<CMD> set_global _enable_mmmc_by_default_flow      $CTE::mmmc_default
+<CMD> suppressMessage ENCEXT-2799
+Sourcing file "../source/project1.tcl" ...
+<CMD> setDesignMode -process 45
+##  Process: 45            (User Set)               
+##     Node: (not set)                           
+
+##  Check design process and node:  
+##  Design tech node is not set.
+
+Applying the recommended capacitance filtering threshold values for 45nm process node: total_c_th=0, relative_c_th=1 and coupling_c_th=0.1.
+	These values will be used by all post-route extraction engines, including TQuantus, IQuantus and Quantus QRC extraction.
+	Capacitance filtering mode(-capFilterMode option of the setExtractRCMode) is 'relAndCoup' for all engines.
+	The accuracy mode for postRoute effortLevel low extraction will be set to 'high'.
+	Default value for EffortLevel(-effortLevel option of the setExtractRCMode) in postRoute extraction mode will be 'medium' if Quantus QRC technology file is specified else 'low'.
+<CMD> set init_verilog /bgfs/ece2193-2024s/swm58/Project/source/MLP_no_sram_syn.v
+<CMD> set init_top_cell MLP_no_sram
+<CMD> set init_lef_file /bgfs/ece2193-2024s/kit/standardcell/lib/files/gscl45nm.lef
+<CMD> set init_pwr_net VDD
+<CMD> set init_gnd_net VSS
+**ERROR: (IMPSYT-6692):	Invalid return code while executing '../source/project1.tcl' was returned and script processing was stopped. Review the following error in '../source/project1.tcl' then restart.
+**ERROR: (IMPSYT-6693):	Error message: ../source/project1.tcl: can't read "mmmc_file": no such variable.
+<CMD> win
+
+--------------------------------------------------------------------------------
+Exiting Innovus on Mon Dec  9 23:02:04 2024
+  Total CPU time:     0:00:15
+  Total real time:    0:02:38
+  Peak memory (main): 458.90MB
+
+
+*** Memory Usage v#1 (Current mem = 607.906M, initial mem = 273.812M) ***
+*** Message Summary: 0 warning(s), 4 error(s)
+
+--- Ending "Innovus" (totcpu=0:00:15.4, real=0:02:37, mem=607.9M) ---

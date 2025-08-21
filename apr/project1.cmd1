@@ -1,0 +1,60 @@
+#######################################################
+#                                                     
+#  Innovus Command Logging File                     
+#  Created on Mon Dec  9 23:02:27 2024                
+#                                                     
+#######################################################
+
+#@(#)CDS: Innovus v19.12-s087_1 (64bit) 11/11/2019 17:32 (Linux 2.6.32-431.11.2.el6.x86_64)
+#@(#)CDS: NanoRoute 19.12-s087_1 NR191024-1807/19_12-UB (database version 18.20, 485.7.1) {superthreading v1.51}
+#@(#)CDS: AAE 19.12-s033 (64bit) 11/11/2019 (Linux 2.6.32-431.11.2.el6.x86_64)
+#@(#)CDS: CTE 19.12-s033_1 () Oct 24 2019 14:09:28 ( )
+#@(#)CDS: SYNTECH 19.12-s008_1 () Oct  6 2019 23:25:36 ( )
+#@(#)CDS: CPE v19.12-s079
+#@(#)CDS: IQuantus/TQuantus 19.1.3-s095 (64bit) Fri Aug 30 18:16:09 PDT 2019 (Linux 2.6.32-431.11.2.el6.x86_64)
+
+set_global _enable_mmmc_by_default_flow      $CTE::mmmc_default
+suppressMessage ENCEXT-2799
+setDesignMode -process 45
+set init_verilog /bgfs/ece2193-2024s/swm58/Project/source/MLP_no_sram_syn.v
+set init_top_cell MLP_no_sram
+set init_lef_file /bgfs/ece2193-2024s/kit/standardcell/lib/files/gscl45nm.lef
+set init_pwr_net VDD
+set init_gnd_net VSS
+init_design
+setDrawView fplan
+floorPlan -flip s -r 1.2 0.7 5 5 5 5
+globalNetConnect VDD -type pgpin -pin vdd -all
+globalNetConnect VSS -type pgpin -pin gnd -all
+globalNetConnect VDD -type tiehi
+globalNetConnect VSS -type tielo
+applyGlobalNets
+setAddRingMode -stacked_via_top_layer metal3 -stacked_via_bottom_layer metal1
+addRing -nets {VDD VSS} -type core_rings -around user_defined -center 0 -spacing 1 -width 1 -offset 1 -threshold auto -layer {top metal1 bottom metal1 left metal2 right metal2}
+sroute -connect {blockPin padPin padRing corePin floatingStripe} -allowJogging true -allowLayerChange true -blockPin useLef -targetViaLayerRange {metal1 metal5}
+editPin -side TOP -layer metal4 -fixedPin 1 -spreadType CENTER -spacing 0.75 -pin { weight_bias_mem_addr_o[*] img_mem_addr_o[*]}
+editPin -side left -layer metal4 -fixedPin 1 -spreadType CENTER -spacing 0.75 -pin {image_i[*] weight_i[*] }
+editPin -side RIGHT -layer metal4 -fixedPin 1 -spreadType CENTER -spacing 0.75 -pin { dout_o[*] }
+editPin -side BOTTOM -layer metal4 -fixedPin 1 -spreadType RANGE -start {5 0} -end {22 0} -spreadDirection CounterClockwise -pin { clk rst_b start_layer1_i start_layer2_i weight_bias_mem_req_o weight_bias_mem_ack_i img_mem_req_o img_mem_ack_i layer1_done_o layer2_done_o}
+setPlaceMode -timingDriven true -congEffort auto -ignoreScan true
+place_design
+setDrawView place
+globalDetailRoute
+setFillerMode -corePrefix MLP_no_sram_FILL -core FILL
+addFiller -cell FILL -prefix MLP_no_sram_FILL -markFixed
+verifyConnectivity -type regular -error 50 -warning 50 -report ./save/Conn_regular.rpt
+verifyConnectivity -type special -error 50 -warning 50 -report ./save/Conn_special.rpt
+verifyGeometry -allowSameCellViols -noSameNet -noOverlap -report ./save/Geom.rpt
+set lefDefOutVersion 5.8
+defOut -floorplan -netlist -routing ./save/MLP_no_sram.def
+write_lef_abstract ./save/MLP_no_sram.lef
+saveNetlist -excludeLeafCell ./save/MLP_no_sram.apr.v
+saveNetlist -excludeLeafCell -includePowerGround ./save/MLP_no_sram.apr.pg.v
+saveModel -cts -sdf -spef -dir ./save/MLP_no_sram_hier_data
+extractRC -outfile MLP_no_sram.cap
+rcOut -spf ./save/MLP_no_sram.spf
+rcOut -spef ./save/MLP_no_sram.spef
+write_sdf ./save/${my_design}.apr.sdf
+setStreamOutMode -snapToMGrid true
+streamOut ./save/MLP_no_sram.gds -structureName MLP_no_sram -mode ALL -outputMacro -mapFile /bgfs/ece2193-2024s/kit/standardcell/lib/files/gds2_encounter.map
+win

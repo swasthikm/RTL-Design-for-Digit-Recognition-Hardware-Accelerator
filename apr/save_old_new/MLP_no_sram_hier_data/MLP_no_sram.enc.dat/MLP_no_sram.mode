@@ -1,0 +1,19 @@
+catch { setDesignMode -process 45 }
+catch { setAnalysisMode -analysisType bcwc }
+catch { setAnalysisMode -clkSrcPath true }
+catch { setAnalysisMode -clockPropagation sdcControl }
+catch { setExtractRCMode  -engine preRoute -total_c_th 5 -relative_c_th 0.03 -coupling_c_th 3 }
+catch {setNanoRouteMode -quiet -extractThirdPartyCompatible false}
+
+catch { setPlaceMode -place_global_cong_effort auto }
+catch { setPlaceMode -place_global_ignore_scan true }
+catch { setPlaceMode -timingDriven false }
+catch { setIlmMode -keepHighFanoutPorts true -keepLoopBack false -keepFlatten true }
+catch { setDelayCalMode -engine aae }
+catch { setDelayCalMode -ignoreNetLoad false }
+catch { setAddRingMode -stacked_via_bottom_layer metal1 }
+catch { setAddRingMode -stacked_via_top_layer metal3 }
+catch { setFillerMode -core FILL }
+catch { setFillerMode -corePrefix MLP_no_sram_FILL }
+catch { setFPlanMode -maxIoHeight false }
+catch { setFPlanMode -powerRailLayer {} }
